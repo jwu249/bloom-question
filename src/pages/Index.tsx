@@ -213,11 +213,23 @@ const Index = () => {
                   onSelectionChange={(areas) => setProjectData({...projectData, selectedAreas: areas})}
                 />
                 
+                {/* Document Upload - Always show when AI is enabled */}
                 {projectData.aiEnabled && (
-                  <FileUploadZone
-                    files={uploadedFiles}
-                    onFilesChange={setUploadedFiles}
-                  />
+                  <div>
+                    <div className="mb-4">
+                      <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                        <Upload className="w-5 h-5 text-primary" />
+                        Document Upload
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Upload relevant documents for AI-enhanced analysis and contextual questions
+                      </p>
+                    </div>
+                    <FileUploadZone
+                      files={uploadedFiles}
+                      onFilesChange={setUploadedFiles}
+                    />
+                  </div>
                 )}
                 
                 <div className="flex gap-3">
@@ -266,20 +278,29 @@ const Index = () => {
                       )}
                     </div>
                     
-                    <Button 
-                      onClick={handleGenerate}
-                      className="w-full bg-gradient-primary hover:shadow-primary transition-smooth"
-                      disabled={isGenerating}
-                    >
-                      {isGenerating ? (
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          Generating...
-                        </div>
-                      ) : (
-                        "Generate Questionnaire"
-                      )}
-                    </Button>
+                    <div className="flex gap-3">
+                      <Button 
+                        variant="outline" 
+                        onClick={() => setStep(2)} 
+                        className="flex-1"
+                      >
+                        Back
+                      </Button>
+                      <Button 
+                        onClick={handleGenerate}
+                        className="flex-1 bg-gradient-primary hover:shadow-primary transition-smooth"
+                        disabled={isGenerating}
+                      >
+                        {isGenerating ? (
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            Generating...
+                          </div>
+                        ) : (
+                          "Generate Questionnaire"
+                        )}
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
