@@ -192,6 +192,25 @@ const Index = () => {
                         />
                       </div>
                     </div>
+
+                    {/* Document Upload - Show when AI is enabled */}
+                    {projectData.aiEnabled && (
+                      <div className="space-y-3">
+                        <div>
+                          <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
+                            <Upload className="w-4 h-4 text-primary" />
+                            Document Upload
+                          </h3>
+                          <p className="text-xs text-muted-foreground">
+                            Upload relevant documents for AI-enhanced analysis and contextual questions
+                          </p>
+                        </div>
+                        <FileUploadZone
+                          files={uploadedFiles}
+                          onFilesChange={setUploadedFiles}
+                        />
+                      </div>
+                    )}
                   </div>
                   
                   <Button 
